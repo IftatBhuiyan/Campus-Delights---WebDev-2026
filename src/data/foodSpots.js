@@ -6,9 +6,18 @@ export const foodSpots = [
     priceRange: '$',
     distance: '2 blocks away',
     rating: 4.1,
+    location: 'Near Hunter College',
+    hours: '10 AM - 8 PM',
     menu: ['Cheese pizza', 'Pepperoni pizza', 'Garlic knots'],
     tags: ['cheap', 'quick'],
     description: 'A pizza place students can go to cheap slices.',
+    reviews: [
+      {
+        name: 'Student 1',
+        rating: 4,
+        text: 'Good when I need food fast before class.',
+      },
+    ],
   },
   {
     id: 2,
@@ -17,9 +26,18 @@ export const foodSpots = [
     priceRange: '$',
     distance: '1 block away',
     rating: 4.4,
+    location: 'Around 68th Street',
+    hours: '11 AM - 9 PM',
     menu: ['Chicken over rice', 'Lamb gyro', 'Falafel platter'],
     tags: ['good portions', 'lunch'],
     description: 'A lunch spot with filling plates and fast service for quite cheap.',
+    reviews: [
+      {
+        name: 'Student 2',
+        rating: 5,
+        text: 'The portions are pretty good for the price.',
+      },
+    ],
   },
   {
     id: 3,
@@ -28,9 +46,18 @@ export const foodSpots = [
     priceRange: '$$',
     distance: '5 minute walk',
     rating: 3.9,
+    location: 'A few blocks from campus',
+    hours: '8 AM - 6 PM',
     menu: ['Iced coffee', 'Latte', 'Muffin'],
     tags: ['coffee', 'study'],
     description: 'A coffee place for drinks like coffe and Bobaa.',
+    reviews: [
+      {
+        name: 'Student 3',
+        rating: 4,
+        text: 'Nice if you want coffee and a place to sit.',
+      },
+    ],
   },
   {
     id: 4,
@@ -39,9 +66,18 @@ export const foodSpots = [
     priceRange: '$$',
     distance: '4 blocks away',
     rating: 4.0,
+    location: 'Near Lexington Ave',
+    hours: '7 AM - 7 PM',
     menu: ['Turkey sandwich', 'Chicken wrap', 'Egg and cheese'],
     tags: ['breakfast', 'quick'],
     description: 'deli-style place with sandwiches and breakfast food.',
+    reviews: [
+      {
+        name: 'Student 4',
+        rating: 4,
+        text: 'Breakfast sandwich is easy before morning class.',
+      },
+    ],
   },
   {
     id: 5,
@@ -50,9 +86,18 @@ export const foodSpots = [
     priceRange: '$$',
     distance: '6 minute walk',
     rating: 4.2,
+    location: 'Near the train station',
+    hours: '12 PM - 10 PM',
     menu: ['Milk tea', 'Taro tea', 'Mango tea'],
     tags: ['drinks', 'hangout'],
     description: ' drink spot students might visit after class.',
+    reviews: [
+      {
+        name: 'Student 5',
+        rating: 4,
+        text: 'Good for getting drinks with friends after class.',
+      },
+    ],
   },
   {
     id: 6,
@@ -61,8 +106,17 @@ export const foodSpots = [
     priceRange: '$$$',
     distance: '3 blocks away',
     rating: 3.8,
+    location: 'Close to campus',
+    hours: '10 AM - 8 PM',
     menu: ['Rice bowl', 'Salad bowl', 'Chicken bowl'],
     tags: ['lunch', 'bowls'],
     description: 'Food spor for lunch bowls when students want something fast.',
+    reviews: [
+      {
+        name: 'Student 6',
+        rating: 3,
+        text: 'It is okay for a quick lunch bowl.',
+      },
+    ],
   },
 ]

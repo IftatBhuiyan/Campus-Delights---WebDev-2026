@@ -1,6 +1,11 @@
+import { useState } from 'react'
+import FoodList from './components/FoodList'
+import { foodSpots } from './data/foodSpots'
 import './App.css'
 
 function App() {
+  const [selectedSpot, setSelectedSpot] = useState(foodSpots[0])
+
   return (
     <div className="app">
       <header className="site-header">
@@ -18,13 +23,11 @@ function App() {
           <p>Find student-approved food spots near Hunter College.</p>
         </section>
 
-        <section className="placeholder-section" id="spots">
-          <h2>Food spots will go here</h2>
-          <p>
-            This section will later show search, filters, and nearby campus food
-            cards.
-          </p>
-        </section>
+        <FoodList
+          spots={foodSpots}
+          selectedSpot={selectedSpot}
+          onSelectSpot={setSelectedSpot}
+        />
 
         <section className="placeholder-section" id="about">
           <h2>About</h2>
