@@ -30,7 +30,8 @@
 }
 
 .hero-section,
-.placeholder-section {
+.placeholder-section,
+.food-list {
   padding: 44px 6%;
 }
 
@@ -64,6 +65,85 @@
 .placeholder-section p {
   max-width: 640px;
   color: #5f4b38;
+}
+
+.food-list {
+  border-top: 1px solid #eadfc9;
+}
+
+.food-list h2 {
+  margin: 0 0 8px;
+  color: #362b21;
+}
+
+.section-note {
+  margin: 0 0 20px;
+  color: #5f4b38;
+}
+
+.food-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 14px;
+}
+
+.food-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #e0cfb4;
+  border-radius: 8px;
+  background: #fffdf8;
+  color: #3b2e24;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.food-card:hover,
+.food-card.selected {
+  border-color: #2f7a55;
+}
+
+.food-card-header,
+.food-card-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.food-card h3,
+.food-card p {
+  margin: 0;
+}
+
+.food-card-header p {
+  color: #6c5947;
+}
+
+.food-card-info {
+  color: #2f7a55;
+  font-weight: 700;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-list span {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f1e4d0;
+  color: #5f4b38;
+  font-size: 0.85rem;
+}
+
+.selected-note {
+  margin-top: 16px;
+  color: #2f7a55;
+  font-weight: 700;
 }
 
 @media (max-width: 600px) {
