@@ -3,7 +3,7 @@ import FoodCard from './FoodCard'
 import FilterBar from './FilterBar'
 import './FoodList.css'
 
-function FoodList({ spots, selectedSpot, onSelectSpot }) {
+function FoodList({ spots, selectedSpot, onSelectSpot, sortBy, onSortChange }) {
   const [searchQuery, setSearchQuery] = useState('')
   const [priceFilter, setPriceFilter] = useState('')
 
@@ -29,6 +29,8 @@ function FoodList({ spots, selectedSpot, onSelectSpot }) {
         setSearchQuery={setSearchQuery}
         priceFilter={priceFilter}
         setPriceFilter={setPriceFilter}
+        sortBy={sortBy}
+        onSortChange={onSortChange}
       />
 
       {filteredSpots.length === 0 ? (

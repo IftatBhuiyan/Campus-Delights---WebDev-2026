@@ -25,27 +25,19 @@
   width: 100%;
 }
 
-.food-card h3,
-.food-card p {
-  margin: 0;
+.food-card-header strong {
+  font-size: 1rem;
+  color: #3b2e24;
+  white-space: nowrap;
+  padding-top: 2px;
 }
 
-.food-card-header p {
-  color: #6c5947;
-}
-
-.tag-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.tag-list span {
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: #f1e4d0;
-  color: #5f4b38;
-  font-size: 0.85rem;
+.food-card-info {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  gap: 12px !important;
+  width: 100%;
 }
 
 .food-card-stats-left {
@@ -73,5 +65,37 @@
 .review-count-badge {
   font-size: 0.9rem;
   font-weight: 500;
+  color: #6c5947;
+}
+
+.food-card-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-list span {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f1e4d0;
+  color: #5f4b38;
+  font-size: 0.85rem;
+}
+
+.food-card h3,
+.food-card p {
+  margin: 0;
+}
+
+.food-card-header p {
   color: #6c5947;
 }
