@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import FoodDetail from './components/FoodDetail'
 import FoodList from './components/FoodList'
 import { foodSpots } from './data/foodSpots'
 import './App.css'
@@ -28,6 +29,8 @@ function App() {
           selectedSpot={selectedSpot}
           onSelectSpot={setSelectedSpot}
         />
+
+        <FoodDetail spot={selectedSpot} />
 
         <section className="placeholder-section" id="about">
           <h2>About</h2>
