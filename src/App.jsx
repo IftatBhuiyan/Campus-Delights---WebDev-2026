@@ -37,10 +37,12 @@ function App() {
       </header>
 
       <main>
-        <section className="hero-section" id="home">
-          <h1>Campus Delights</h1>
-          <p>Find student-approved food spots near Hunter College.</p>
-        </section>
+        <div className = "hero-image">
+          <section className="hero-section" id="home">
+            <h1>Campus Delights</h1>
+            <p>Find student-approved food spots near Hunter College!</p>
+          </section>
+        </div>
 
         <FoodList
           spots={sortedSpots}
