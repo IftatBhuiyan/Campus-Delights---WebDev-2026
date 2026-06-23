@@ -1,5 +1,6 @@
 import React from 'react'
 import ReviewForm from './ReviewForm'
+import './FoodDetail.css'
 
 function FoodDetail({ spot, onUpdateSpotReviews }) {
   if (!spot) {

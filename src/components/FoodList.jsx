@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import FoodCard from './FoodCard'
 import FilterBar from './FilterBar'
+import './FoodList.css'
 
 function FoodList({ spots, selectedSpot, onSelectSpot }) {
   const [searchQuery, setSearchQuery] = useState('')
@@ -30,16 +31,22 @@ function FoodList({ spots, selectedSpot, onSelectSpot }) {
         setPriceFilter={setPriceFilter}
       />
 
-      <div className="food-card-grid">
-        {filteredSpots.map((spot) => (
-          <FoodCard
-            key={spot.id}
-            spot={spot}
-            isSelected={selectedSpot?.id === spot.id}
-            onSelectSpot={onSelectSpot}
-          />
-        ))}
-      </div>
+      {filteredSpots.length === 0 ? (
+        <div className="no-results">
+          <p>No spots found.</p>
+        </div>
+      ) : (
+        <div className="food-card-grid">
+          {filteredSpots.map((spot) => (
+            <FoodCard
+              key={spot.id}
+              spot={spot}
+              isSelected={selectedSpot?.id === spot.id}
+              onSelectSpot={onSelectSpot}
+            />
+          ))}
+        </div>
+      )}
 
       {selectedSpot && (
         <p className="selected-note">Selected: {selectedSpot.name}</p>

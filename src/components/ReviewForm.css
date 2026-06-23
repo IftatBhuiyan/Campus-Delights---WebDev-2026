@@ -1,0 +1,50 @@
+.review-form-container {
+  margin-top: 25px;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  max-width: 500px;
+}
+
+.form-field-group {
+  margin-bottom: 12px;
+}
+
+.form-label {
+  font-size: 14px;
+  font-weight: bold;
+  color: #362b21;
+}
+
+.form-text-input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-select-input {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.form-textarea-input {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  resize: vertical;
+}
+
+.form-submit-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}

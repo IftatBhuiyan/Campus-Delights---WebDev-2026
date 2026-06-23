@@ -1,0 +1,62 @@
+.food-detail {
+  padding: 44px 6%;
+  border-top: 1px solid #eadfc9;
+  background: #fffdf8;
+}
+
+.food-detail h2 {
+  margin: 0 0 8px;
+  color: #362b21;
+}
+
+.food-detail > p {
+  max-width: 680px;
+  color: #5f4b38;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.detail-grid div,
+.review-card {
+  border: 1px solid #e0cfb4;
+  border-radius: 8px;
+  background: #fffaf1;
+  padding: 12px;
+}
+
+.detail-grid h3,
+.detail-grid p,
+.detail-section h3,
+.review-card p {
+  margin: 0;
+}
+
+.detail-grid h3,
+.detail-section h3 {
+  color: #362b21;
+}
+
+.detail-section {
+  margin-top: 18px;
+}
+
+.detail-section ul {
+  margin: 8px 0 0;
+  padding-left: 22px;
+}
+
+.review-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.review-card p {
+  margin-top: 6px;
+  color: #5f4b38;
+}
