@@ -16,10 +16,11 @@
   border-color: #2f7a55;
 }
 
-.food-card-header {
+.food-card-header,
+.food-card-info {
   display: flex !important;
   justify-content: space-between !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   gap: 12px !important;
   width: 100%;
 }
