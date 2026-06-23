@@ -1,4 +1,5 @@
 import React from 'react'
+import './FilterBar.css'
 
 function FilterBar({ searchQuery, setSearchQuery, priceFilter, setPriceFilter }) {
   return (
@@ -21,6 +22,15 @@ function FilterBar({ searchQuery, setSearchQuery, priceFilter, setPriceFilter })
         <option value="$$">$$</option>
         <option value="$$$">$$$</option>
       </select>
+
+      {(searchQuery || priceFilter) && (
+        <button 
+          onClick={() => { setSearchQuery(''); setPriceFilter(''); }}
+          className="filter-clear-btn"
+        >
+          Clear
+        </button>
+      )}
     </div>
   )
 }
