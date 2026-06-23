@@ -30,7 +30,7 @@ function FoodCard({ spot, isSelected, onSelectSpot }) {
         </span>
       </div>
 
-      {/* This new bottom row spreads the tag pills on the left and pins your status badge exactly where you drew the red box */}
+      {/* This bottom row spreads the tag pills and the status badge */}
       <div className="food-card-bottom-row">
         <div className="tag-list">
           {spot.tags.map((tag) => (
@@ -39,21 +39,6 @@ function FoodCard({ spot, isSelected, onSelectSpot }) {
         </div>
         <OpenStatus hours={spot.hours} />
       </div>
-  <div className="food-card-stats-left">
-    <span className="price-text">{spot.priceRange}</span>
-    <span className="dot-separator">•</span>
-    <span className="distance-text">{spot.distance}</span>
-  </div>
-  <span className="review-count-badge">
-    💬 {spot.reviews.length} {spot.reviews.length === 1 ? 'review' : 'reviews'}
-  </span>
-</div>
-
-<div className="tag-list">
-  {spot.tags.map((tag) => (
-    <span key={tag}>{tag}</span>
-  ))}
-</div>
     </button>
   )
 }
