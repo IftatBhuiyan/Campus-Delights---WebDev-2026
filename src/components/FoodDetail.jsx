@@ -1,6 +1,14 @@
-function FoodDetail({ spot }) {
+import React from 'react'
+import ReviewForm from './ReviewForm'
+
+function FoodDetail({ spot, onUpdateSpotReviews }) {
   if (!spot) {
     return null
+  }
+
+  const handleAddReview = (newReview) => {
+    const updatedReviews = [...spot.reviews, newReview]
+    onUpdateSpotReviews(spot.id, updatedReviews)
   }
 
   return (
@@ -49,6 +57,8 @@ function FoodDetail({ spot }) {
           ))}
         </div>
       </div>
+
+      <ReviewForm onAddReview={handleAddReview} />
     </section>
   )
 }

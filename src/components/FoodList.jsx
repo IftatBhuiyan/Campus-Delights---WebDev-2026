@@ -1,6 +1,21 @@
+import React, { useState } from 'react'
 import FoodCard from './FoodCard'
+import FilterBar from './FilterBar'
 
 function FoodList({ spots, selectedSpot, onSelectSpot }) {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [priceFilter, setPriceFilter] = useState('')
+
+  const filteredSpots = spots.filter((spot) => {
+    const matchesSearch =
+      spot.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      spot.cuisine.toLowerCase().includes(searchQuery.toLowerCase())
+      
+    const matchesPrice = priceFilter === '' || spot.priceRange === priceFilter
+
+    return matchesSearch && matchesPrice
+  })
+
   return (
     <section className="food-list" id="spots">
       <h2>Food spots near Hunter</h2>
@@ -8,8 +23,15 @@ function FoodList({ spots, selectedSpot, onSelectSpot }) {
         These are sample locations for now. Real places can be added later.
       </p>
 
+      <FilterBar
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        priceFilter={priceFilter}
+        setPriceFilter={setPriceFilter}
+      />
+
       <div className="food-card-grid">
-        {spots.map((spot) => (
+        {filteredSpots.map((spot) => (
           <FoodCard
             key={spot.id}
             spot={spot}
