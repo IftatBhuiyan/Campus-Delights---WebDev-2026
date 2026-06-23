@@ -6,6 +6,24 @@ import './App.css'
 
 function App() {
   const [selectedSpot, setSelectedSpot] = useState(foodSpots[0])
+  const [sortBy, setSortBy] = useState('default')
+
+  const sortedSpots = [...foodSpots].sort((a, b) => {
+    if (sortBy === 'rating-desc') {
+      return b.rating - a.rating
+    }
+    if (sortBy === 'distance-asc') {
+      const getDistanceValue = (str) => parseInt(str.replace(/\D/g, ''), 10) || 0
+      return getDistanceValue(a.distance) - getDistanceValue(b.distance)
+    }
+    if (sortBy === 'price-asc') {
+      return a.priceRange.length - b.priceRange.length
+    }
+    if (sortBy === 'price-desc') {
+      return b.priceRange.length - a.priceRange.length
+    }
+    return 0
+  })
 
   return (
     <div className="app">
@@ -25,9 +43,11 @@ function App() {
         </section>
 
         <FoodList
-          spots={foodSpots}
+          spots={sortedSpots}
           selectedSpot={selectedSpot}
           onSelectSpot={setSelectedSpot}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
         />
 
         <FoodDetail spot={selectedSpot} />

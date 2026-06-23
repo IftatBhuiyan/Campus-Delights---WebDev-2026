@@ -1,7 +1,8 @@
 import React from 'react'
+import SortDropdown from './SortDropdown'
 import './FilterBar.css'
 
-function FilterBar({ searchQuery, setSearchQuery, priceFilter, setPriceFilter }) {
+function FilterBar({ searchQuery, setSearchQuery, priceFilter, setPriceFilter, sortBy, onSortChange }) {
   return (
     <div className="filter-container">
       <input
@@ -22,6 +23,8 @@ function FilterBar({ searchQuery, setSearchQuery, priceFilter, setPriceFilter })
         <option value="$$">$$</option>
         <option value="$$$">$$$</option>
       </select>
+
+      <SortDropdown sortBy={sortBy} onSortChange={onSortChange} />
 
       {(searchQuery || priceFilter) && (
         <button 
