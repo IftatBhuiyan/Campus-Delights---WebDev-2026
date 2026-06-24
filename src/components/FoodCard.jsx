@@ -3,6 +3,9 @@ import OpenStatus from './OpenStatus'
 import './FoodCard.css'
 
 function FoodCard({ spot, isSelected, onSelectSpot }) {
+  // Use optional chaining (?.) and defaults (|| []) to prevent crashes
+  const reviewCount = spot.reviews?.length || 0;
+
   return (
     <button
       className={`food-card ${isSelected ? 'selected' : ''}`}
@@ -17,23 +20,25 @@ function FoodCard({ spot, isSelected, onSelectSpot }) {
         <strong>{spot.rating} / 5</strong>
       </div>
 
-      <p>{spot.description}</p>
+      {/* Added fallback for description */}
+      <p>{spot.description || 'No description available.'}</p>
 
       <div className="food-card-info">
         <div className="food-card-stats-left">
-          <span className="price-text">{spot.priceRange}</span>
+          <span className="price-text">{spot.priceRange || 'N/A'}</span>
           <span className="dot-separator">•</span>
-          <span className="distance-text">{spot.distance}</span>
+          <span className="distance-text">{spot.distance || 'N/A'}</span>
         </div>
         <span className="review-count-badge">
-          💬 {spot.reviews.length} {spot.reviews.length === 1 ? 'review' : 'reviews'}
+          {/* Using the safe reviewCount variable here */}
+          💬 {reviewCount} {reviewCount === 1 ? 'review' : 'reviews'}
         </span>
       </div>
 
-      {/* This bottom row spreads the tag pills and the status badge */}
       <div className="food-card-bottom-row">
         <div className="tag-list">
-          {spot.tags.map((tag) => (
+          {/* Safe mapping for tags */}
+          {spot.tags?.map((tag) => (
             <span key={tag}>{tag}</span>
           ))}
         </div>
