@@ -8,8 +8,10 @@ function FoodDetail({ spot, onUpdateSpotReviews }) {
   }
 
   const handleAddReview = (newReview) => {
-    const updatedReviews = [...spot.reviews, newReview]
-    onUpdateSpotReviews(spot.id, updatedReviews)
+    // Safe fallback for current reviews array
+    const currentReviews = spot.reviews || [];
+    const updatedReviews = [...currentReviews, newReview]
+    onUpdateSpotReviews(spot._id, updatedReviews) // Changed spot.id to spot._id for MongoDB
   }
 
   return (
@@ -20,42 +22,44 @@ function FoodDetail({ spot, onUpdateSpotReviews }) {
       <div className="detail-grid">
         <div>
           <h3>Location</h3>
-          <p>{spot.location}</p>
+          <p>{spot.location || 'N/A'}</p>
         </div>
         <div>
           <h3>Hours</h3>
-          <p>{spot.hours}</p>
+          <p>{spot.hours || 'N/A'}</p>
         </div>
         <div>
           <h3>Price</h3>
-          <p>{spot.priceRange}</p>
+          <p>{spot.priceRange || 'N/A'}</p>
         </div>
         <div>
           <h3>Rating</h3>
-          <p>{spot.rating} / 5</p>
+          <p>{spot.rating || 0} / 5</p>
         </div>
       </div>
 
       <div className="detail-section">
         <h3>Menu items</h3>
         <ul>
-          {spot.menu.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
+          {/* Safe map for menu items */}
+          {spot.menu?.map((item, index) => (
+            <li key={index}>{item}</li>
+          )) || <li>No menu items listed.</li>}
         </ul>
       </div>
 
       <div className="detail-section">
         <h3>Student reviews</h3>
         <div className="review-list">
-          {spot.reviews.map((review) => (
-            <article className="review-card" key={review.name}>
+          {/* Safe map for reviews */}
+          {spot.reviews?.map((review, index) => (
+            <article className="review-card" key={index}>
               <strong>
-                {review.name} - {review.rating} / 5
+                {review.name || 'Anonymous'} - {review.rating || 0} / 5
               </strong>
               <p>{review.text}</p>
             </article>
-          ))}
+          )) || <p>No reviews yet.</p>}
         </div>
       </div>
 
