@@ -11,7 +11,7 @@ function FoodDetail({ spot, onUpdateSpotReviews }) {
     // Safe fallback for current reviews array
     const currentReviews = spot.reviews || [];
     const updatedReviews = [...currentReviews, newReview]
-    onUpdateSpotReviews(spot._id, updatedReviews) // Changed spot.id to spot._id for MongoDB
+    onUpdateSpotReviews(spot._id || spot.id, updatedReviews)
   }
 
   return (
