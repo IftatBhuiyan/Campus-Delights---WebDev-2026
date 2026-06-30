@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import FoodDetail from './components/FoodDetail'
 import FoodList from './components/FoodList'
-import { foodSpots } from './data/foodSpots'
+import { getFoodSpots, addReview } from './api/foodSpots'
 import './App.css'
 
 function getCurrentPage() {
@@ -9,11 +9,15 @@ function getCurrentPage() {
   return page || 'home'
 }
 
+const normalize = (spot) => ({ ...spot, id: spot._id })
+
 function App() {
   const [currentPage, setCurrentPage] = useState(getCurrentPage())
-  const [spots, setSpots] = useState(foodSpots)
-  const [selectedSpot, setSelectedSpot] = useState(foodSpots[0])
+  const [spots, setSpots] = useState([])
+  const [selectedSpot, setSelectedSpot] = useState(null)
   const [sortBy, setSortBy] = useState('default')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -24,31 +28,31 @@ function App() {
     return () => window.removeEventListener('hashchange', handleRouteChange)
   }, [])
 
-  const sortedSpots = [...spots].sort((a, b) => {
-    if (sortBy === 'rating-desc') {
-      return b.rating - a.rating
-    }
-    if (sortBy === 'price-asc') {
-      return a.priceRange.length - b.priceRange.length
-    }
-    if (sortBy === 'price-desc') {
-      return b.priceRange.length - a.priceRange.length
-    }
-    return 0
-  })
+  useEffect(() => {
+    setLoading(true)
+    getFoodSpots({ sortBy })
+      .then((data) => {
+        const normalized = data.map(normalize)
+        setSpots(normalized)
+        setSelectedSpot((current) => current || normalized[0] || null)
+        setError('')
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false))
+  }, [sortBy])
 
-  const updateSpotReviews = (spotId, updatedReviews) => {
-    setSpots((currentSpots) =>
-      currentSpots.map((spot) => {
-        const currentId = spot._id || spot.id
-        if (currentId !== spotId) {
-          return spot
-        }
-        const updatedSpot = { ...spot, reviews: updatedReviews }
-        setSelectedSpot(updatedSpot)
-        return updatedSpot
-      }),
-    )
+  const updateSpotReviews = async (spotId, updatedReviews) => {
+    const newReview = updatedReviews[updatedReviews.length - 1]
+    try {
+      const updated = normalize(await addReview(spotId, newReview))
+      setSpots((currentSpots) =>
+        currentSpots.map((spot) => (spot.id === spotId ? updated : spot)),
+      )
+      setSelectedSpot(updated)
+      setError('')
+    } catch (err) {
+      setError(err.message)
+    }
   }
 
   return (
@@ -124,17 +128,23 @@ function App() {
               </p>
             </div>
 
-            <FoodList
-              spots={sortedSpots}
-              selectedSpot={selectedSpot}
-              onSelectSpot={setSelectedSpot}
-              sortBy={sortBy}
-              onSortChange={setSortBy}
-            />
-            <FoodDetail
-              spot={selectedSpot}
-              onUpdateSpotReviews={updateSpotReviews}
-            />
+            {loading && <p className="status-message">Loading food spots...</p>}
+            {error && <p className="status-message">{error}</p>}
+            {!loading && !error && (
+              <>
+                <FoodList
+                  spots={spots}
+                  selectedSpot={selectedSpot}
+                  onSelectSpot={setSelectedSpot}
+                  sortBy={sortBy}
+                  onSortChange={setSortBy}
+                />
+                <FoodDetail
+                  spot={selectedSpot}
+                  onUpdateSpotReviews={updateSpotReviews}
+                />
+              </>
+            )}
           </section>
         )}
 
