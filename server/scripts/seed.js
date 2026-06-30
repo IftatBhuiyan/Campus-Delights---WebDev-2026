@@ -8,7 +8,6 @@ const sampleData = [
     cuisine: 'Pizza',
     priceRange: '$',
     distance: '2 blocks away',
-    rating: 4.1,
     location: '215 E 68th St, New York, NY 10065',
     hours: '10 AM - 8 PM',
     menu: ['Cheese slice', 'Pepperoni slice', 'Garlic knots', 'Sicilian slice'],
@@ -24,7 +23,6 @@ const sampleData = [
     cuisine: 'Pizza',
     priceRange: '$$$',
     distance: '4 blocks away',
-    rating: 4.6,
     location: '341 E 71st St, New York, NY 10021',
     hours: '11 AM - 10 PM',
     menu: ['Margherita pizza', 'Truffle mushroom pizza', 'Burrata appetizer', 'Tiramisu'],
@@ -40,7 +38,6 @@ const sampleData = [
     cuisine: 'Halal',
     priceRange: '$',
     distance: '1 block away',
-    rating: 4.4,
     location: '695 Lexington Ave, New York, NY 10065',
     hours: '11 AM - 9 PM',
     menu: ['Chicken over rice', 'Lamb gyro', 'Falafel platter', 'Combo platter'],
@@ -56,7 +53,6 @@ const sampleData = [
     cuisine: 'Halal',
     priceRange: '$$',
     distance: '3 blocks away',
-    rating: 4.3,
     location: '172 E 70th St, New York, NY 10021',
     hours: '10 AM - 10 PM',
     menu: ['Lamb shawarma plate', 'Mixed grill', 'Hummus and pita', 'Baklava'],
@@ -72,7 +68,6 @@ const sampleData = [
     cuisine: 'Coffee',
     priceRange: '$',
     distance: '2 blocks away',
-    rating: 3.8,
     location: '228 E 68th St, New York, NY 10065',
     hours: '6 AM - 5 PM',
     menu: ['Drip coffee', 'Bagel with cream cheese', 'Croissant', 'Iced coffee'],
@@ -88,7 +83,6 @@ const sampleData = [
     cuisine: 'Coffee',
     priceRange: '$$',
     distance: '5 blocks away',
-    rating: 4.2,
     location: '320 E 72nd St, New York, NY 10021',
     hours: '7 AM - 7 PM',
     menu: ['Iced latte', 'Pour over', 'Matcha latte', 'Avocado toast', 'Muffin'],
@@ -104,7 +98,6 @@ const sampleData = [
     cuisine: 'Sandwiches',
     priceRange: '$',
     distance: '1 block away',
-    rating: 4.0,
     location: '158 E 68th St, New York, NY 10065',
     hours: '6 AM - 7 PM',
     menu: ['Egg and cheese', 'BLT', 'Tuna hero', 'Turkey and swiss'],
@@ -120,7 +113,6 @@ const sampleData = [
     cuisine: 'Sandwiches',
     priceRange: '$$$',
     distance: '4 blocks away',
-    rating: 4.5,
     location: '289 E 71st St, New York, NY 10021',
     hours: '10 AM - 8 PM',
     menu: ['Truffle turkey sub', 'Roast beef and brie', 'Lobster roll', 'House-made chips'],
@@ -136,7 +128,6 @@ const sampleData = [
     cuisine: 'Bubble Tea',
     priceRange: '$',
     distance: '2 blocks away',
-    rating: 4.0,
     location: '197 E 68th St, New York, NY 10065',
     hours: '10 AM - 9 PM',
     menu: ['Classic milk tea', 'Brown sugar boba', 'Fruit tea', 'Matcha milk tea'],
@@ -152,7 +143,6 @@ const sampleData = [
     cuisine: 'Bubble Tea',
     priceRange: '$$',
     distance: '5 blocks away',
-    rating: 4.5,
     location: '410 E 72nd St, New York, NY 10021',
     hours: '11 AM - 10 PM',
     menu: ['Taro milk tea', 'Mango slush', 'Jasmine green tea', 'Tiger sugar latte'],
@@ -168,7 +158,6 @@ const sampleData = [
     cuisine: 'Quick Lunch',
     priceRange: '$',
     distance: '2 blocks away',
-    rating: 3.9,
     location: '144 E 68th St, New York, NY 10065',
     hours: '10 AM - 7 PM',
     menu: ['Rice bowl', 'Grain bowl', 'Chicken bowl', 'Veggie bowl'],
@@ -184,7 +173,6 @@ const sampleData = [
     cuisine: 'Quick Lunch',
     priceRange: '$$$',
     distance: '3 blocks away',
-    rating: 4.4,
     location: '234 E 70th St, New York, NY 10021',
     hours: '9 AM - 8 PM',
     menu: ['Salmon poke bowl', 'Acai bowl', 'Kale and quinoa salad', 'Avocado chicken bowl'],
@@ -200,7 +188,6 @@ const sampleData = [
     cuisine: 'Chinese',
     priceRange: '$',
     distance: '3 blocks away',
-    rating: 4.3,
     location: '312 E 68th St, New York, NY 10065',
     hours: '11 AM - 9 PM',
     menu: ['Beef noodle soup', 'Dan dan noodles', 'Pork dumplings', 'Scallion pancake'],
@@ -216,7 +203,6 @@ const sampleData = [
     cuisine: 'Chinese',
     priceRange: '$$$',
     distance: '5 blocks away',
-    rating: 4.5,
     location: '403 E 72nd St, New York, NY 10021',
     hours: '12 PM - 10 PM',
     menu: ['Peking duck', 'Mapo tofu', 'Dim sum basket', 'Shrimp fried rice'],
@@ -232,7 +218,6 @@ const sampleData = [
     cuisine: 'Mexican',
     priceRange: '$',
     distance: '4 blocks away',
-    rating: 4.2,
     location: '187 E 71st St, New York, NY 10021',
     hours: '10 AM - 10 PM',
     menu: ['Street tacos', 'Burrito bowl', 'Quesadilla', 'Horchata'],
@@ -248,7 +233,6 @@ const sampleData = [
     cuisine: 'Mexican',
     priceRange: '$$$',
     distance: '5 blocks away',
-    rating: 4.6,
     location: '356 E 72nd St, New York, NY 10021',
     hours: '11 AM - 11 PM',
     menu: ['Carne asada plate', 'Lobster tacos', 'Guacamole tableside', 'Churros'],
@@ -264,7 +248,6 @@ const sampleData = [
     cuisine: 'Sushi',
     priceRange: '$$',
     distance: '3 blocks away',
-    rating: 4.1,
     location: '265 E 70th St, New York, NY 10021',
     hours: '11 AM - 9 PM',
     menu: ['California roll', 'Spicy tuna roll', 'Edamame', 'Miso soup'],
@@ -280,7 +263,6 @@ const sampleData = [
     cuisine: 'Sushi',
     priceRange: '$$$',
     distance: '5 blocks away',
-    rating: 4.7,
     location: '445 E 72nd St, New York, NY 10021',
     hours: '12 PM - 9 PM',
     menu: ['Omakase set', 'Spicy tuna roll', 'Salmon sashimi', 'Wagyu nigiri'],
@@ -296,7 +278,6 @@ const sampleData = [
     cuisine: 'Dessert',
     priceRange: '$',
     distance: '1 block away',
-    rating: 4.2,
     location: '131 E 68th St, New York, NY 10065',
     hours: '11 AM - 9 PM',
     menu: ['Soft serve cone', 'Brownie', 'Rice crispy treat', 'Chocolate chip cookie'],
@@ -312,7 +293,6 @@ const sampleData = [
     cuisine: 'Dessert',
     priceRange: '$$',
     distance: '4 blocks away',
-    rating: 4.6,
     location: '278 E 71st St, New York, NY 10021',
     hours: '12 PM - 10 PM',
     menu: ['Rotating soft serve', 'Loaded sundae', 'Milkshake', 'Cookie ice cream sandwich'],
@@ -325,11 +305,17 @@ const sampleData = [
   }
 ];
 
+const withCalculatedRatings = sampleData.map((spot) => {
+  if (!spot.reviews || spot.reviews.length === 0) return { ...spot, rating: 0 };
+  const total = spot.reviews.reduce((sum, review) => sum + review.rating, 0);
+  return { ...spot, rating: Math.round((total / spot.reviews.length) * 10) / 10 };
+});
+
 const seedDB = async () => {
   await mongoose.connect(process.env.MONGO_URI);
   await FoodSpot.deleteMany({});
-  await FoodSpot.insertMany(sampleData);
-  console.log(`Database seeded with ${sampleData.length} food spots`);
+  await FoodSpot.insertMany(withCalculatedRatings);
+  console.log(`Database seeded with ${withCalculatedRatings.length} food spots`);
   process.exit();
 };
 
