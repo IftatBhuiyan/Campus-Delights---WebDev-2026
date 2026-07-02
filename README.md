@@ -1,16 +1,61 @@
-# React + Vite
+# Project Name: Campus Delights
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Team Members
+- Iftat
+- Mehrab
+- Raissa
+- Katherin
 
-Currently, two official plugins are available:
+## Description
+A social marketplace web application for CUNY Hunter College students to discover, rate, and review food spots near campus. The app will help students quickly find affordable, convenient, and student-approved places to eat between classes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Students will be able to browse nearby restaurants, cafés, food carts, and quick-service spots around Hunter College. Each food spot can include basic information such as name, location, cuisine type, price range, distance from campus, hours, and student ratings. Users can leave reviews, rate food spots, and share helpful details such as best menu items, affordability, wait time, portion size, and study-friendly atmosphere.
 
-## React Compiler
+The goal is to make campus food discovery easier by collecting student-centered recommendations in one place instead of relying only on Google Maps, word of mouth, or scattered social media posts.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Technologies Used
+- React w/Vite, HTML, CSS
+- JavaScript
+- Node.js + Express
+- MongoDB Atlas
+- APIs authentication
 
-## Expanding the ESLint configuration
+## Installation
+Clone the repository:
+git clone <https://github.com/IftatBhuiyan/Campus-Delights---WebDev-2026.git>
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Install dependencies:
+npm install
+npm create vite@latest
+
+Run locally:
+npm run dev
+
+## Features
+Feature 1: Landing Page
+Feature 2: Navigation Menu
+Feature 3: Food Spots Search Bar
+Feature 4: Food Spots Filters
+Feature 5: Review/Comment Sections
+Feature 6: Intake Suggestion Form
+
+## Folder Structure
+src/
+  api/
+  assets/
+  components/
+  data/
+  images/
+  pages/
+
+## Deployment
+http://localhost:5173/Campus-Delights---WebDev-2026/#home
+
+## Contributions
+Iftat - [Type Here]
+
+Mehrub - [Type Here]
+
+Raissa - [Type Here]
+
+Katherin - Assisted in UI images and hero background feel, created an intake form to allow for user suggestions/updates to food spots, and a system for overlooking user requests for team approval
