@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import FoodDetail from './components/FoodDetail'
 import FoodList from './components/FoodList'
 import { getFoodSpots, addReview } from './api/foodSpots'
+import Contact from './pages/Contact'
 import './App.css'
 
 function getCurrentPage() {
@@ -178,30 +179,7 @@ function App() {
           </section>
         )}
 
-        {currentPage === 'contact' && (
-          <section className="page-section contact-page">
-            <div className="page-heading">
-              <p className="hero-label">Contact</p>
-              <h1>Contact the team</h1>
-              <p>
-                This page can be used later for messages, suggestions, or new
-                food spot requests.
-              </p>
-            </div>
-
-            <div className="contact-card">
-              <h2>Suggest a food spot</h2>
-              <p>
-                For now, students can tell the project team about places they
-                want added. Later this can become a real form connected to the
-                backend.
-              </p>
-              <a className="primary-button" href="#food-spots">
-                Back to Food Spots
-              </a>
-            </div>
-          </section>
-        )}
+        {currentPage === 'contact' && <Contact />}
       </main>
     </div>
   )
