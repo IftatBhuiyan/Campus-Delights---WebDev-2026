@@ -73,7 +73,7 @@ function App() {
         {currentPage === 'home' && (
           <section className="hero-section" id="home">
             <div className="hero-copy">
-              <p className="hero-label">Hunter College food finder</p>
+              <p className="hero-label">Hunter College Food Finder</p>
               <h1>Campus Delights</h1>
               <p className="hero-text">
                 Find student-approved food spots near Hunter College without
