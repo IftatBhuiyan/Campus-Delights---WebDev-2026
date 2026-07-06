@@ -4,14 +4,29 @@
   background: #fffdf8;
 }
 
+.food-detail--modal {
+  padding: 22px 22px 28px;
+  border-top: none;
+  background: transparent;
+}
+
 .food-detail h2 {
   margin: 0 0 8px;
   color: #362b21;
 }
 
-.food-detail > p {
+.food-detail-description {
+  margin: 0 0 20px;
   max-width: 680px;
   color: #5f4b38;
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.detail-empty {
+  margin: 8px 0 0;
+  color: #6c5947;
+  font-style: italic;
 }
 
 .detail-grid {

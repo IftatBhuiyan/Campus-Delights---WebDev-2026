@@ -2,22 +2,20 @@ import React from 'react'
 import ReviewForm from './ReviewForm'
 import './FoodDetail.css'
 
-function FoodDetail({ spot, onUpdateSpotReviews }) {
+function FoodDetail({ spot, onUpdateSpotReviews, inModal = false }) {
   if (!spot) {
     return null
   }
 
   const handleAddReview = (newReview) => {
-    // Safe fallback for current reviews array
-    const currentReviews = spot.reviews || [];
+    const currentReviews = spot.reviews || []
     const updatedReviews = [...currentReviews, newReview]
     onUpdateSpotReviews(spot._id || spot.id, updatedReviews)
   }
 
   return (
-    <section className="food-detail">
-      <h2>{spot.name} details</h2>
-      <p>{spot.description}</p>
+    <section className={`food-detail ${inModal ? 'food-detail--modal' : ''}`}>
+      <p className="food-detail-description">{spot.description}</p>
 
       <div className="detail-grid">
         <div>
@@ -40,26 +38,32 @@ function FoodDetail({ spot, onUpdateSpotReviews }) {
 
       <div className="detail-section">
         <h3>Menu items</h3>
-        <ul>
-          {/* Safe map for menu items */}
-          {spot.menu?.map((item, index) => (
-            <li key={index}>{item}</li>
-          )) || <li>No menu items listed.</li>}
-        </ul>
+        {spot.menu?.length > 0 ? (
+          <ul>
+            {spot.menu.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="detail-empty">No menu items listed.</p>
+        )}
       </div>
 
       <div className="detail-section">
         <h3>Student reviews</h3>
         <div className="review-list">
-          {/* Safe map for reviews */}
-          {spot.reviews?.map((review, index) => (
-            <article className="review-card" key={index}>
-              <strong>
-                {review.name || 'Anonymous'} - {review.rating || 0} / 5
-              </strong>
-              <p>{review.text}</p>
-            </article>
-          )) || <p>No reviews yet.</p>}
+          {spot.reviews?.length > 0 ? (
+            spot.reviews.map((review, index) => (
+              <article className="review-card" key={index}>
+                <strong>
+                  {review.name || 'Anonymous'} - {review.rating || 0} / 5
+                </strong>
+                <p>{review.text}</p>
+              </article>
+            ))
+          ) : (
+            <p className="detail-empty">No reviews yet. Be the first to share your experience.</p>
+          )}
         </div>
       </div>
 
