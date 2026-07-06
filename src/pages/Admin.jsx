@@ -169,7 +169,7 @@ function Admin() {
       <section className="page-section admin-page">
         <div className="page-heading">
           <p className="hero-label">Admin</p>
-          <h1>Team login</h1>
+          <h1>Team Login</h1>
           <p>Sign in to review student food spot suggestions.</p>
         </div>
 
