@@ -17,9 +17,8 @@ function Contact() {
             <div className="contact-card">
                 <h2>Suggest a food spot</h2>
                 <p>
-                    For now, students can tell the project team about places they
-                    want added. Later this can become a real form connected to the
-                    backend.
+                    Share a restaurant you think Hunter students should know about.
+                    Submissions go to our team for review before being added to the app.
                 </p>
                 <button
                     className="primary-button"
@@ -31,6 +30,10 @@ function Contact() {
             {showForm && (
                 <ContactForm onClose={() => setShowForm(false)} />
             )}
+
+            <p className="admin-entry-link">
+                Team member? <a href="#admin">Review submissions</a>
+            </p>
         </section>
     );
 }

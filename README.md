@@ -35,6 +35,36 @@ npm create vite@latest
 Run locally:
 npm run dev
 
+The food spots page loads data from the deployed API (`campus-delights-api.onrender.com`) by default via `.env.development`, so it should match GitHub Pages without running the backend yourself.
+
+To run the full stack locally (optional):
+1. Copy `server/.env.example` to `server/.env` and fill in your values
+2. Use port `5001` if port `5000` is taken (common on macOS)
+3. Create `.env.local` with `VITE_API_URL=http://localhost:5001`
+4. In one terminal: `cd server && npm install && npm run seed && npm start`
+5. In another: `npm run dev`
+
+## Food spot suggestions & admin review
+
+**Student flow**
+1. Go to Contact (`#contact`)
+2. Click **Submit Your Request!** and fill out the suggestion form
+3. The submission is saved in MongoDB as `pending`
+
+**Team review flow**
+1. Go to `#admin` (link at the bottom of the Contact page)
+2. Sign in with the admin username/password from `server/.env`
+3. Review pending submissions, then **Approve** or **Reject**
+4. Approved spots are published to the Food Spots page automatically
+
+**Required server environment variables** (local `server/.env` and Render):
+- `MONGO_URI`
+- `JWT_SECRET` — long random string for admin sessions
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
+
+After deploying the updated API to Render, add the three new admin variables in the Render dashboard.
+
 ## Features
 
 Feature 1: Landing Page

@@ -92,7 +92,20 @@
     transition: 0.2s;
 }
 
-.close-button:hover {
-    background-color: #d9d9d9;
-    transform: scale(1.05);
+.form-success {
+  padding: 1.25rem;
+  border: 1px solid #b8dfc8;
+  border-radius: 12px;
+  background: #f3faf5;
+  color: #2f5f42;
+}
+
+.form-success p {
+  margin: 0.5rem 0 0;
+}
+
+.form-error {
+  margin: 0;
+  color: #9a3d23;
+  font-weight: 600;
 }

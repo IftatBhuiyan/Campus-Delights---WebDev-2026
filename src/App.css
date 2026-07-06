@@ -292,6 +292,17 @@
   margin-top: 22px;
 }
 
+.admin-entry-link {
+  margin-top: 18px;
+  color: #6c5947;
+  font-size: 0.95rem;
+}
+
+.admin-entry-link a {
+  color: #2f7a55;
+  font-weight: 700;
+}
+
 @media (max-width: 600px) {
   .site-header {
     align-items: flex-start;

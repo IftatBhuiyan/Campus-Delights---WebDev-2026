@@ -21,7 +21,7 @@ function FoodList({ spots, selectedSpot, onSelectSpot, sortBy, onSortChange }) {
     <section className="food-list" id="spots">
       <h2>Food spots near Hunter</h2>
       <p className="section-note">
-        These are sample locations for now. Real places can be added later.
+        Click any spot to view full details in a quick panel — no scrolling required.
       </p>
 
       <FilterBar
@@ -48,10 +48,6 @@ function FoodList({ spots, selectedSpot, onSelectSpot, sortBy, onSortChange }) {
             />
           ))}
         </div>
-      )}
-
-      {selectedSpot && (
-        <p className="selected-note">Selected: {selectedSpot.name}</p>
       )}
     </section>
   )

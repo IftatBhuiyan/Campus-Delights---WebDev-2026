@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import FoodDetail from './components/FoodDetail'
+import FoodDetailModal from './components/FoodDetailModal'
 import FoodList from './components/FoodList'
 import { getFoodSpots, addReview } from './api/foodSpots'
 import Contact from './pages/Contact'
+import Admin from './pages/Admin'
 import './App.css'
 
 function getCurrentPage() {
@@ -35,7 +36,7 @@ function App() {
       .then((data) => {
         const normalized = data.map(normalize)
         setSpots(normalized)
-        setSelectedSpot((current) => current || normalized[0] || null)
+        setSelectedSpot(null)
         setError('')
       })
       .catch((err) => setError(err.message))
@@ -83,7 +84,7 @@ function App() {
                 <span>Browse spots near Hunter</span>
                 <span>Filter and search restaurants</span>
                 <span>Check prices and open status</span>
-                <span>Suggest new places later</span>
+                <span>Suggest new places to the team</span>
               </div>
 
               <div className="hero-actions">
@@ -124,8 +125,8 @@ function App() {
               <p className="hero-label">Food Spots</p>
               <h1>Browse nearby spots</h1>
               <p>
-                Search, sort, and click a spot to see prices, hours, menu items,
-                reviews, and other details.
+                Search, sort, and click a spot to open its full details — hours,
+                menu, reviews, and more.
               </p>
             </div>
 
@@ -140,10 +141,13 @@ function App() {
                   sortBy={sortBy}
                   onSortChange={setSortBy}
                 />
-                <FoodDetail
-                  spot={selectedSpot}
-                  onUpdateSpotReviews={updateSpotReviews}
-                />
+                {selectedSpot && (
+                  <FoodDetailModal
+                    spot={selectedSpot}
+                    onClose={() => setSelectedSpot(null)}
+                    onUpdateSpotReviews={updateSpotReviews}
+                  />
+                )}
               </>
             )}
           </section>
@@ -180,6 +184,8 @@ function App() {
         )}
 
         {currentPage === 'contact' && <Contact />}
+
+        {currentPage === 'admin' && <Admin />}
       </main>
     </div>
   )
