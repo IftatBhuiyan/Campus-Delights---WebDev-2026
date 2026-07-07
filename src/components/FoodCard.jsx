@@ -1,10 +1,11 @@
 import React from 'react'
 import OpenStatus from './OpenStatus'
+import { getBestForLabels } from '../utils/foodSpotHelpers'
 import './FoodCard.css'
 
 function FoodCard({ spot, isSelected, onSelectSpot }) {
-  // Use optional chaining (?.) and defaults (|| []) to prevent crashes
-  const reviewCount = spot.reviews?.length || 0;
+  const reviewCount = spot.reviews?.length || 0
+  const bestForLabels = getBestForLabels(spot)
 
   return (
     <button
@@ -36,11 +37,30 @@ function FoodCard({ spot, isSelected, onSelectSpot }) {
       </div>
 
       <div className="food-card-bottom-row">
-        <div className="tag-list">
-          {/* Safe mapping for tags */}
-          {spot.tags?.map((tag) => (
-            <span key={tag}>{tag}</span>
-          ))}
+        <div className="food-card-chip-stack">
+          {bestForLabels.length > 0 && (
+            <div className="chip-group">
+              <span className="chip-group-label">Best for</span>
+              <div className="tag-list">
+                {bestForLabels.map((tag) => (
+                  <span key={tag} className="best-for-chip">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {spot.tags?.length > 0 && (
+            <div className="chip-group">
+              <span className="chip-group-label">Tags</span>
+              <div className="tag-list">
+                {spot.tags.map((tag) => (
+                  <span key={tag}>{tag}</span>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
         <OpenStatus hours={spot.hours} />
       </div>

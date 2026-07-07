@@ -2,11 +2,13 @@ import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import OpenStatus from './OpenStatus'
 import FoodDetail from './FoodDetail'
+import { getBestForLabels } from '../utils/foodSpotHelpers'
 import './FoodDetailModal.css'
 
-function FoodDetailModal({ spot, onClose, onUpdateSpotReviews }) {
+function FoodDetailModal({ spot, onClose, onUpdateSpotReviews, onUploadSpotMedia, onReportSpotInfo }) {
   const closeButtonRef = useRef(null)
   const reviewCount = spot.reviews?.length || 0
+  const bestForLabels = getBestForLabels(spot)
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
@@ -56,6 +58,18 @@ function FoodDetailModal({ spot, onClose, onUpdateSpotReviews }) {
                 ))}
               </div>
             )}
+            {bestForLabels.length > 0 && (
+              <div className="spot-modal-best-for">
+                <span className="spot-modal-chip-label">Best for</span>
+                <div className="spot-modal-tags">
+                  {bestForLabels.map((tag) => (
+                    <span key={tag} className="spot-modal-best-for-chip">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
           <button
             ref={closeButtonRef}
@@ -72,6 +86,8 @@ function FoodDetailModal({ spot, onClose, onUpdateSpotReviews }) {
           <FoodDetail
             spot={spot}
             onUpdateSpotReviews={onUpdateSpotReviews}
+            onUploadSpotMedia={onUploadSpotMedia}
+            onReportSpotInfo={onReportSpotInfo}
             inModal
           />
         </div>

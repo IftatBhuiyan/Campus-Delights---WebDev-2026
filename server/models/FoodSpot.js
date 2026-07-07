@@ -9,6 +9,33 @@ const reviewSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const mediaSchema = new mongoose.Schema(
+  {
+    kind: { type: String, enum: ['photo', 'menu screenshot'], default: 'photo' },
+    caption: { type: String, default: '' },
+    filename: { type: String, default: '' },
+    mimeType: { type: String, default: '' },
+    dataUrl: { type: String, required: true },
+    uploadedAt: { type: Date, default: Date.now },
+  },
+  { _id: true },
+);
+
+const reportSchema = new mongoose.Schema(
+  {
+    issueType: {
+      type: String,
+      enum: ['hours', 'address', 'closed', 'menu', 'other'],
+      required: true,
+    },
+    details: { type: String, required: true },
+    email: { type: String, default: '' },
+    status: { type: String, enum: ['open', 'reviewed'], default: 'open' },
+    createdAt: { type: Date, default: Date.now },
+  },
+  { _id: true },
+);
+
 const foodSpotSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -21,6 +48,9 @@ const foodSpotSchema = new mongoose.Schema(
     description: { type: String, default: '' },
     menu: { type: [String], default: [] },
     tags: { type: [String], default: [] },
+    bestFor: { type: [String], default: [] },
+    media: { type: [mediaSchema], default: [] },
+    reports: { type: [reportSchema], default: [] },
     reviews: { type: [reviewSchema], default: [] }
   },
   { timestamps: true }

@@ -28,3 +28,23 @@ export async function addReview(id, review) {
   if (!res.ok) throw new Error('Failed to add review');
   return res.json();
 }
+
+export async function uploadSpotMedia(id, payload) {
+  const res = await fetch(`${BASE_URL}/api/foodspots/${id}/media`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  if (!res.ok) throw new Error('Failed to upload photos');
+  return res.json()
+}
+
+export async function reportSpotInfo(id, payload) {
+  const res = await fetch(`${BASE_URL}/api/foodspots/${id}/reports`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  })
+  if (!res.ok) throw new Error('Failed to send report');
+  return res.json()
+}

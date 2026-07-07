@@ -36,6 +36,22 @@
   margin: 20px 0;
 }
 
+.detail-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.detail-chip {
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f1e4d0;
+  color: #5f4b38;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
 .detail-grid div,
 .review-card {
   border: 1px solid #e0cfb4;
@@ -69,6 +85,89 @@
   display: grid;
   gap: 10px;
   margin-top: 8px;
+}
+
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.media-card {
+  margin: 0;
+  border: 1px solid #e0cfb4;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fffaf1;
+}
+
+.media-card img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.media-card figcaption {
+  padding: 10px 12px 12px;
+  color: #5f4b38;
+}
+
+.media-card figcaption strong {
+  display: inline-block;
+  margin-bottom: 4px;
+  color: #362b21;
+  text-transform: capitalize;
+}
+
+.media-card figcaption p {
+  margin: 0;
+}
+
+.detail-action-section {
+  padding-top: 12px;
+}
+
+.spot-action-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.spot-action-form label {
+  display: grid;
+  gap: 6px;
+  color: #362b21;
+  font-weight: 600;
+}
+
+.spot-action-form input,
+.spot-action-form select,
+.spot-action-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #e0cfb4;
+  border-radius: 8px;
+  background: #fffdf8;
+  color: #362b21;
+  font: inherit;
+}
+
+.spot-action-form textarea {
+  resize: vertical;
+}
+
+.detail-help-text,
+.detail-status-message {
+  margin: 0;
+  color: #6c5947;
+  font-size: 0.95rem;
+}
+
+.detail-status-message {
+  color: #2f7a55;
+  font-weight: 600;
 }
 
 .review-card p {

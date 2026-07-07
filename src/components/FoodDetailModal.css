@@ -89,6 +89,25 @@
   font-size: 0.82rem;
 }
 
+.spot-modal-best-for {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.spot-modal-chip-label {
+  color: #6c5947;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.spot-modal-tags span.spot-modal-best-for-chip {
+  background: #e8f5ee;
+  color: #2f7a55;
+}
+
 .spot-modal-close {
   flex-shrink: 0;
   display: grid;

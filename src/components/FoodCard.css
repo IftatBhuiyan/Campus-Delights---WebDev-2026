@@ -77,6 +77,25 @@
   margin-top: 2px;
 }
 
+.food-card-chip-stack {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+
+.chip-group {
+  display: grid;
+  gap: 6px;
+}
+
+.chip-group-label {
+  color: #6c5947;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -89,6 +108,11 @@
   background: #f1e4d0;
   color: #5f4b38;
   font-size: 0.85rem;
+}
+
+.tag-list span.best-for-chip {
+  background: #e8f5ee;
+  color: #2f7a55;
 }
 
 .food-card h3,
