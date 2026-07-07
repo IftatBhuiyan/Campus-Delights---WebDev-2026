@@ -1,5 +1,19 @@
 const FoodSpot = require('../models/FoodSpot');
 
+const normalizeList = (value) => {
+  if (!Array.isArray(value)) return [];
+  return value.map((item) => String(item).trim()).filter(Boolean);
+};
+
+const normalizeMediaAttachment = (attachment) => ({
+  kind: attachment.kind === 'menu screenshot' ? 'menu screenshot' : 'photo',
+  caption: String(attachment.caption || '').trim(),
+  filename: String(attachment.filename || '').trim(),
+  mimeType: String(attachment.mimeType || '').trim(),
+  dataUrl: String(attachment.dataUrl || '').trim(),
+  uploadedAt: new Date(),
+});
+
 const parseDistance = (value) => {
   if (!value) return Number.MAX_SAFE_INTEGER;
   const match = String(value).match(/\d+(\.\d+)?/);
@@ -54,7 +68,16 @@ exports.getFoodSpotById = async (req, res) => {
 
 exports.createFoodSpot = async (req, res) => {
   try {
-    const spot = await FoodSpot.create(req.body);
+    const spot = await FoodSpot.create({
+      ...req.body,
+      menu: normalizeList(req.body.menu),
+      tags: normalizeList(req.body.tags),
+      bestFor: normalizeList(req.body.bestFor),
+      media: Array.isArray(req.body.media)
+        ? req.body.media.map(normalizeMediaAttachment).filter((item) => item.dataUrl)
+        : [],
+      reports: [],
+    });
     res.status(201).json(spot);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -69,6 +92,59 @@ exports.addReview = async (req, res) => {
     spot.reviews.push(req.body);
     const total = spot.reviews.reduce((sum, review) => sum + review.rating, 0);
     spot.rating = Math.round((total / spot.reviews.length) * 10) / 10;
+
+    await spot.save();
+    res.status(201).json(spot);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+exports.addSpotMedia = async (req, res) => {
+  try {
+    const spot = await FoodSpot.findById(req.params.id);
+    if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+
+    const attachments = Array.isArray(req.body.attachments) ? req.body.attachments : [];
+    if (attachments.length === 0) {
+      return res.status(400).json({ message: 'At least one photo or screenshot is required' });
+    }
+
+    const normalized = attachments
+      .map(normalizeMediaAttachment)
+      .filter((attachment) => attachment.dataUrl.startsWith('data:image/'));
+
+    if (normalized.length === 0) {
+      return res.status(400).json({ message: 'Please upload a valid image file' });
+    }
+
+    spot.media.push(...normalized);
+    await spot.save();
+
+    res.status(201).json(spot);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+exports.reportFoodSpotInfo = async (req, res) => {
+  try {
+    const spot = await FoodSpot.findById(req.params.id);
+    if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+
+    const issueType = String(req.body.issueType || '').trim();
+    const details = String(req.body.details || '').trim();
+    if (!issueType || !details) {
+      return res.status(400).json({ message: 'Issue type and details are required' });
+    }
+
+    spot.reports.push({
+      issueType,
+      details,
+      email: String(req.body.email || '').trim(),
+      status: 'open',
+      createdAt: new Date(),
+    });
 
     await spot.save();
     res.status(201).json(spot);

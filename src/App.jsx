@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
 import FoodDetailModal from './components/FoodDetailModal'
 import FoodList from './components/FoodList'
-import { getFoodSpots, addReview } from './api/foodSpots'
+import {
+  addReview,
+  getFoodSpots,
+  reportSpotInfo as reportFoodSpotInfo,
+  uploadSpotMedia,
+} from './api/foodSpots'
 import Contact from './pages/Contact'
 import Admin from './pages/Admin'
 import './App.css'
@@ -20,6 +25,13 @@ function App() {
   const [sortBy, setSortBy] = useState('default')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+
+  const syncUpdatedSpot = (updatedSpot) => {
+    setSpots((currentSpots) =>
+      currentSpots.map((spot) => (spot.id === updatedSpot.id ? updatedSpot : spot)),
+    )
+    setSelectedSpot(updatedSpot)
+  }
 
   useEffect(() => {
     const handleRouteChange = () => {
@@ -46,11 +58,26 @@ function App() {
   const updateSpotReviews = async (spotId, updatedReviews) => {
     const newReview = updatedReviews[updatedReviews.length - 1]
     try {
-      const updated = normalize(await addReview(spotId, newReview))
-      setSpots((currentSpots) =>
-        currentSpots.map((spot) => (spot.id === spotId ? updated : spot)),
-      )
-      setSelectedSpot(updated)
+      syncUpdatedSpot(normalize(await addReview(spotId, newReview)))
+      setError('')
+    } catch (err) {
+      setError(err.message)
+    }
+  }
+
+  const updateSpotMedia = async (spotId, attachments) => {
+    try {
+      syncUpdatedSpot(normalize(await uploadSpotMedia(spotId, { attachments })))
+      setError('')
+    } catch (err) {
+      setError(err.message)
+      throw err
+    }
+  }
+
+  const submitSpotReport = async (spotId, payload) => {
+    try {
+      syncUpdatedSpot(normalize(await reportFoodSpotInfo(spotId, payload)))
       setError('')
     } catch (err) {
       setError(err.message)
@@ -82,9 +109,9 @@ function App() {
 
               <div className="feature-list">
                 <span>Browse spots near Hunter</span>
-                <span>Filter and search restaurants</span>
-                <span>Check prices and open status</span>
-                <span>Suggest new places to the team</span>
+                <span>Filter by budget, walk time, and open now</span>
+                <span>Search with autocomplete suggestions</span>
+                <span>Upload photos, screenshots, or reports</span>
               </div>
 
               <div className="hero-actions">
@@ -146,6 +173,8 @@ function App() {
                     spot={selectedSpot}
                     onClose={() => setSelectedSpot(null)}
                     onUpdateSpotReviews={updateSpotReviews}
+                    onUploadSpotMedia={updateSpotMedia}
+                    onReportSpotInfo={submitSpotReport}
                   />
                 )}
               </>

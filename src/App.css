@@ -108,6 +108,14 @@
   font-weight: 700;
 }
 
+.feature-list span:nth-child(2) {
+  color: #2f7a55;
+}
+
+.feature-list span:nth-child(4) {
+  color: #9a3d23;
+}
+
 .hero-actions {
   display: flex;
   align-items: center;
