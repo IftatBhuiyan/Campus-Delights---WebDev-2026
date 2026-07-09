@@ -8,11 +8,13 @@ import {
   rejectSuggestion,
 } from '../api/admin'
 import AdminLocations from '../components/AdminLocations'
+import AdminStudentActivity from '../components/AdminStudentActivity'
 import './Admin.css'
 
 const MAIN_VIEWS = [
   { id: 'submissions', label: 'Submissions' },
   { id: 'locations', label: 'Locations' },
+  { id: 'activity', label: 'Uploads & Reports' },
 ]
 
 const STATUS_TABS = [
@@ -255,6 +257,10 @@ function Admin() {
 
       {mainView === 'locations' && (
         <AdminLocations onMessage={setActionMessage} />
+      )}
+
+      {mainView === 'activity' && (
+        <AdminStudentActivity onMessage={setActionMessage} />
       )}
 
       {mainView === 'submissions' && (
