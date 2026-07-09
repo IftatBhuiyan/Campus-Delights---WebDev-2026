@@ -5,6 +5,7 @@ const cors = require('cors');
 const foodSpotRoutes = require('./routes/foodSpotRoutes');
 const suggestionRoutes = require('./routes/suggestionRoutes');
 const authRoutes = require('./routes/authRoutes');
+const adminFoodSpotRoutes = require('./routes/adminFoodSpotRoutes');
 
 if (!process.env.MONGO_URI) {
   console.error(
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/api/foodspots', foodSpotRoutes);
 app.use('/api/suggestions', suggestionRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/admin/foodspots', adminFoodSpotRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))

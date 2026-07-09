@@ -35,3 +35,21 @@ export async function rejectSuggestion(id, rejectionNote = '') {
     body: { rejectionNote },
   });
 }
+
+export async function getAdminFoodSpots(show = 'all') {
+  return apiFetch(`/api/admin/foodspots?show=${show}`);
+}
+
+export async function updateFoodSpot(id, payload) {
+  return apiFetch(`/api/admin/foodspots/${id}`, {
+    method: 'PATCH',
+    body: payload,
+  });
+}
+
+export async function setFoodSpotArchived(id, archived) {
+  return apiFetch(`/api/admin/foodspots/${id}/archive`, {
+    method: 'PATCH',
+    body: { archived },
+  });
+}
