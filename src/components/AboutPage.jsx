@@ -19,7 +19,7 @@ const stats = [
 
 const teamMembers = [
   { name: 'Iftat Bhuiyan', role: 'Project Lead',                  emoji: '🛠️' },
-  { name: 'Mahrub',        role: 'Backend Development',            emoji: '⚙️' },
+  { name: 'Mehrub',        role: 'Backend Development',            emoji: '⚙️' },
   { name: 'Raissa Santos', role: 'Food Spots Feature & Frontend',  emoji: '🍽️' },
   { name: 'Katherine',     role: 'UI & Frontend',                  emoji: '🎨' },
 ]
