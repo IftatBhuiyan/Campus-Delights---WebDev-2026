@@ -3,7 +3,7 @@
 ## Team Members
 
 - Iftat
-- Mehrab
+- Mehrub
 - Raissa
 - Katherin
 
