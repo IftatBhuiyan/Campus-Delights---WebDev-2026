@@ -90,10 +90,10 @@ http://localhost:5173/Campus-Delights---WebDev-2026/#home
 
 ## Contributions
 
-Iftat - Designed and Created basic outline and strucure for the Repo, Further refined and modified the Landing page.
+Iftat - Set up the repo structure, landing page, and core app routing/navigation. Built the food spot detail modal, connected the Contact suggestion form to the backend, and implemented the admin review flow so the team can approve or reject student submissions. Also handled local dev setup, GitHub Pages integration, and wiring the About page into the app.
 
-Mehrub - [Type Here]
+Mehrab - Built and deployed the full backend: Express API, MongoDB Atlas, FoodSpot data model, seed script, and Render hosting (`campus-delights-api.onrender.com`). Implemented food spot, review, photo upload, and report endpoints that connect the live frontend to the database.
 
-Raissa - Food Spots page, About page, CSS styling, and responsive design
+Raissa - Led frontend work on the Food Spots experience and the About page, including search with autocomplete, budget/walk-time/open-now filters, spot cards and detail views, and the full About page with team info, how-it-works steps, stats, and FAQ.
 
-Katherin - Assisted in UI images and hero background feel, created an intake form to allow for user suggestions/updates to food spots, and a system for overlooking user requests for team approval
+Katherin - Shaped the app’s visual feel with hero background imagery and UI assets, and designed the Contact page plus the food spot suggestion intake form (modal layout, fields, and styling) so students can recommend new places for the team to review.
