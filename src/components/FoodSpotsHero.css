@@ -1,0 +1,119 @@
+.food-spots-hero {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  margin-top: 58px;
+  background-image:
+    linear-gradient(120deg, rgba(20, 12, 5, 0.82) 40%, rgba(20, 12, 5, 0.45) 100%),
+    url('../images/bg-food.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.food-spots-hero-overlay {
+  display: none;
+}
+
+.food-spots-hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 60px 7% 52px;
+  max-width: 680px;
+}
+
+.food-spots-hero-label {
+  display: inline-block;
+  margin: 0 0 18px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(74, 124, 89, 0.85);
+  color: #d4edda;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.food-spots-hero h1 {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.food-spots-hero h1 span {
+  display: block;
+  color: #6ee4a8;
+}
+
+.food-spots-hero-text {
+  margin: 0 0 28px;
+  max-width: 480px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.food-spots-hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.food-spots-hero-features span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.food-spots-hero-features span::before {
+  content: '•';
+  margin-right: 8px;
+  color: #6ee4a8;
+}
+
+.food-spots-stats {
+  background: #1f1a14;
+  padding: 18px 7%;
+}
+
+.food-spots-stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.food-spots-stats-grid strong {
+  display: block;
+  color: #6ee4a8;
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.food-spots-stats-grid span {
+  display: block;
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.food-spots-content {
+  min-height: auto;
+  padding-top: 0;
+}
+
+@media (max-width: 600px) {
+  .food-spots-hero {
+    min-height: 360px;
+  }
+
+  .food-spots-hero-copy {
+    padding: 42px 24px 36px;
+  }
+}
