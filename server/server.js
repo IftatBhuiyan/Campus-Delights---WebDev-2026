@@ -6,6 +6,7 @@ const foodSpotRoutes = require('./routes/foodSpotRoutes');
 const suggestionRoutes = require('./routes/suggestionRoutes');
 const authRoutes = require('./routes/authRoutes');
 const adminFoodSpotRoutes = require('./routes/adminFoodSpotRoutes');
+const adminActivityRoutes = require('./routes/adminActivityRoutes');
 
 if (!process.env.MONGO_URI) {
   console.error(
@@ -23,6 +24,7 @@ app.use('/api/foodspots', foodSpotRoutes);
 app.use('/api/suggestions', suggestionRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin/foodspots', adminFoodSpotRoutes);
+app.use('/api/admin/activity', adminActivityRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))

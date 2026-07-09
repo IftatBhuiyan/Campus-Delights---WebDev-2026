@@ -53,3 +53,24 @@ export async function setFoodSpotArchived(id, archived) {
     body: { archived },
   });
 }
+
+export async function getAdminReports(status = 'open') {
+  return apiFetch(`/api/admin/activity/reports?status=${status}`);
+}
+
+export async function getAdminMedia() {
+  return apiFetch('/api/admin/activity/media');
+}
+
+export async function updateReportStatus(spotId, reportId, status) {
+  return apiFetch(`/api/admin/activity/reports/${spotId}/${reportId}`, {
+    method: 'PATCH',
+    body: { status },
+  });
+}
+
+export async function deleteSpotMedia(spotId, mediaId) {
+  return apiFetch(`/api/admin/activity/media/${spotId}/${mediaId}`, {
+    method: 'DELETE',
+  });
+}

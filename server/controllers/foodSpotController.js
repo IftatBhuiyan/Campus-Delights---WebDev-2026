@@ -221,3 +221,99 @@ exports.setFoodSpotArchived = async (req, res) => {
     res.status(400).json({ message: err.message });
   }
 };
+
+exports.getAdminReports = async (req, res) => {
+  try {
+    const { status = 'open' } = req.query;
+    const spots = await FoodSpot.find({ 'reports.0': { $exists: true } }).select('name reports');
+
+    const reports = spots
+      .flatMap((spot) =>
+        spot.reports.map((report) => ({
+          reportId: report._id,
+          spotId: spot._id,
+          spotName: spot.name,
+          issueType: report.issueType,
+          details: report.details,
+          email: report.email,
+          status: report.status,
+          createdAt: report.createdAt,
+        })),
+      )
+      .filter((report) => status === 'all' || report.status === status)
+      .sort((left, right) => new Date(right.createdAt) - new Date(left.createdAt));
+
+    res.json(reports);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.getAdminMedia = async (req, res) => {
+  try {
+    const spots = await FoodSpot.find({ 'media.0': { $exists: true } }).select('name media');
+
+    const media = spots
+      .flatMap((spot) =>
+        spot.media.map((item) => ({
+          mediaId: item._id,
+          spotId: spot._id,
+          spotName: spot.name,
+          kind: item.kind,
+          caption: item.caption,
+          filename: item.filename,
+          mimeType: item.mimeType,
+          dataUrl: item.dataUrl,
+          uploadedAt: item.uploadedAt,
+        })),
+      )
+      .sort((left, right) => new Date(right.uploadedAt) - new Date(left.uploadedAt));
+
+    res.json(media);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.updateReportStatus = async (req, res) => {
+  try {
+    const spot = await FoodSpot.findById(req.params.spotId);
+    if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+
+    const report = spot.reports.id(req.params.reportId);
+    if (!report) return res.status(404).json({ message: 'Report not found' });
+
+    const nextStatus = req.body.status === 'reviewed' ? 'reviewed' : 'open';
+    report.status = nextStatus;
+    await spot.save();
+
+    res.json({
+      reportId: report._id,
+      spotId: spot._id,
+      spotName: spot.name,
+      issueType: report.issueType,
+      details: report.details,
+      email: report.email,
+      status: report.status,
+      createdAt: report.createdAt,
+    });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+exports.deleteSpotMedia = async (req, res) => {
+  try {
+    const spot = await FoodSpot.findById(req.params.spotId);
+    if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+
+    const hadMedia = spot.media.id(req.params.mediaId);
+    if (!hadMedia) return res.status(404).json({ message: 'Media not found' });
+
+    spot.media.pull(req.params.mediaId);
+    await spot.save();
+    res.json({ message: 'Media removed' });
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
