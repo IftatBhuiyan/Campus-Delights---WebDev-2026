@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'
 import FoodDetailModal from './components/FoodDetailModal'
 import FoodList from './components/FoodList'
 import {
@@ -25,6 +26,7 @@ function App() {
   const [sortBy, setSortBy] = useState('default')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const syncUpdatedSpot = (updatedSpot) => {
     setSpots((currentSpots) =>
@@ -87,12 +89,23 @@ function App() {
   return (
     <div className="app">
       <header className="site-header">
-        <a className="logo" href="#home">Campus Delights</a>
-        <nav>
-          <a href="#home">Home</a>
-          <a href="#food-spots">Food Spots</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
+        <a className="logo" href="#home">
+          Campus Delights
+        </a>
+
+        <button
+          className="hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation"
+        >
+          {menuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
+        </button>
+
+        <nav className={menuOpen ? "nav-links active" : "nav-links"}>
+          <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
+          <a href="#food-spots" onClick={() => setMenuOpen(false)}>Food Spots</a>
+          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
+          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
         </nav>
       </header>
 
