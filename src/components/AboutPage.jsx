@@ -156,7 +156,7 @@ const AboutPage = () => {
   }, [])
 
   return (
-    <div style={{ fontFamily: 'Arial, Helvetica, sans-serif', background: cream, color: dark, minHeight: '100vh' }}>
+    <div style={{ fontFamily: 'Arial, Helvetica, sans-serif', background: cream, color: dark, minHeight: '100vh', paddingTop: '64px' }}>
 
       {/* HERO */}
       <section style={{ padding: 'clamp(60px, 10vw, 100px) 6% clamp(48px, 8vw, 80px)', background: cream, borderBottom: `1px solid ${border}`, position: 'relative', overflow: 'hidden' }}>
@@ -172,7 +172,7 @@ const AboutPage = () => {
           <p style={{ margin: '0 0 32px', fontSize: 'clamp(1rem, 2.5vw, 1.15rem)', color: brown, lineHeight: '1.65', maxWidth: '540px' }}>
             Campus Delights started because we were tired of wandering around Lexington Ave trying to decide where to eat with 15 minutes before class. So we built the thing we wished already existed.
           </p>
-          <a href="/food-spots" style={{ display: 'inline-block', background: accent, color: white, fontWeight: '700', fontSize: '0.95rem', padding: '13px 28px', borderRadius: '999px', textDecoration: 'none' }}>
+          <a href="#food-spots" style={{ display: 'inline-block', background: accent, color: white, fontWeight: '700', fontSize: '0.95rem', padding: '13px 28px', borderRadius: '999px', textDecoration: 'none' }}>
             Explore Food Spots →
           </a>
         </div>
@@ -290,7 +290,7 @@ const AboutPage = () => {
           <p style={{ margin: '0 auto 32px', fontSize: '1.05rem', color: 'rgba(255,255,255,0.5)', maxWidth: '420px', lineHeight: '1.6' }}>
             20 spots, 10 cuisines, all within 5 blocks of Hunter. Open, affordable, and student-approved.
           </p>
-          <a href="/food-spots" style={{ display: 'inline-block', background: accent, color: white, fontWeight: '800', fontSize: '1rem', padding: '14px 32px', borderRadius: '999px', textDecoration: 'none' }}>
+          <a href="#food-spots" style={{ display: 'inline-block', background: accent, color: white, fontWeight: '800', fontSize: '1rem', padding: '14px 32px', borderRadius: '999px', textDecoration: 'none' }}>
             Browse Food Spots →
           </a>
         </FadeIn>
