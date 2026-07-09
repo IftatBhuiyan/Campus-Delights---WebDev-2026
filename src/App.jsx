@@ -10,6 +10,7 @@ import {
 } from './api/foodSpots'
 import Contact from './pages/Contact'
 import Admin from './pages/Admin'
+import AboutPage from './components/AboutPage'
 import './App.css'
 
 function getCurrentPage() {
@@ -195,35 +196,7 @@ function App() {
           </section>
         )}
 
-        {currentPage === 'about' && (
-          <section className="page-section about-page">
-            <div className="page-heading">
-              <p className="hero-label">About</p>
-              <h1>About Campus Delights</h1>
-              <p>
-                Campus Delights is a class project for helping Hunter students
-                find quick, affordable places to eat nearby.
-              </p>
-            </div>
-
-            <div className="info-grid">
-              <article>
-                <h2>What it does</h2>
-                <p>
-                  The app helps students browse food spots, compare prices, see
-                  ratings, and check details before deciding where to go.
-                </p>
-              </article>
-              <article>
-                <h2>Why we made it</h2>
-                <p>
-                  Hunter students are usually moving between classes, so the goal
-                  is to make nearby food options easier to find.
-                </p>
-              </article>
-            </div>
-          </section>
-        )}
+        {currentPage === 'about' && <AboutPage />}
 
         {currentPage === 'contact' && <Contact />}
 
