@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+// Legacy standalone page from early Food Spots design.
+// The live app uses FoodSpotsHero + FoodList + FoodDetailModal in App.jsx with API data.
+
 // ─── COLORS ──────────────────────────────────────────────────────────────────
 const green      = '#4a7c59'
 const greenLight = '#e8f5ee'

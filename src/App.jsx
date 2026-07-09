@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'
 import FoodDetailModal from './components/FoodDetailModal'
 import FoodList from './components/FoodList'
+import FoodSpotsHero from './components/FoodSpotsHero'
 import {
   addReview,
   getFoodSpots,
@@ -161,39 +162,34 @@ function App() {
         )}
 
         {currentPage === 'food-spots' && (
-          <section className="page-section">
-            <div className="page-heading">
-              <p className="hero-label">Food Spots</p>
-              <h1>Browse nearby spots</h1>
-              <p>
-                Search, sort, and click a spot to open its full details — hours,
-                menu, reviews, and more.
-              </p>
-            </div>
+          <>
+            <FoodSpotsHero spots={spots} />
 
-            {loading && <p className="status-message">Loading food spots...</p>}
-            {error && <p className="status-message">{error}</p>}
-            {!loading && !error && (
-              <>
-                <FoodList
-                  spots={spots}
-                  selectedSpot={selectedSpot}
-                  onSelectSpot={setSelectedSpot}
-                  sortBy={sortBy}
-                  onSortChange={setSortBy}
-                />
-                {selectedSpot && (
-                  <FoodDetailModal
-                    spot={selectedSpot}
-                    onClose={() => setSelectedSpot(null)}
-                    onUpdateSpotReviews={updateSpotReviews}
-                    onUploadSpotMedia={updateSpotMedia}
-                    onReportSpotInfo={submitSpotReport}
+            <section className="page-section food-spots-content">
+              {loading && <p className="status-message">Loading food spots...</p>}
+              {error && <p className="status-message">{error}</p>}
+              {!loading && !error && (
+                <>
+                  <FoodList
+                    spots={spots}
+                    selectedSpot={selectedSpot}
+                    onSelectSpot={setSelectedSpot}
+                    sortBy={sortBy}
+                    onSortChange={setSortBy}
                   />
-                )}
-              </>
-            )}
-          </section>
+                  {selectedSpot && (
+                    <FoodDetailModal
+                      spot={selectedSpot}
+                      onClose={() => setSelectedSpot(null)}
+                      onUpdateSpotReviews={updateSpotReviews}
+                      onUploadSpotMedia={updateSpotMedia}
+                      onReportSpotInfo={submitSpotReport}
+                    />
+                  )}
+                </>
+              )}
+            </section>
+          </>
         )}
 
         {currentPage === 'about' && <AboutPage />}
