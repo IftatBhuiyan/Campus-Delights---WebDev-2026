@@ -94,6 +94,6 @@ Iftat - Designed and Created basic outline and strucure for the Repo, Further re
 
 Mehrub - [Type Here]
 
-Raissa - [Type Here]
+Raissa - Food Spots page, About page, CSS styling, and responsive design
 
 Katherin - Assisted in UI images and hero background feel, created an intake form to allow for user suggestions/updates to food spots, and a system for overlooking user requests for team approval
