@@ -96,4 +96,4 @@ Mehrab - Built and deployed the full backend: Express API, MongoDB Atlas, FoodSp
 
 Raissa - Led frontend work on the Food Spots experience and the About page, including search with autocomplete, budget/walk-time/open-now filters, spot cards and detail views, and the full About page with team info, how-it-works steps, stats, and FAQ.
 
-Katherin - Shaped the app’s visual feel with hero background imagery and UI assets, and designed the Contact page plus the food spot suggestion intake form (modal layout, fields, and styling) so students can recommend new places for the team to review.
+Katherin - Shaped the app’s visual feel with hero background imagery and UI assets, and designed the Contact page plus the food spot suggestion intake form (modal layout, fields, and styling) so students can recommend new places for the team to review. 
