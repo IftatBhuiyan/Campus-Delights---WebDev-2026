@@ -18,6 +18,7 @@ function FoodDetail({
   const [reportIssueType, setReportIssueType] = useState('hours')
   const [reportDetails, setReportDetails] = useState('')
   const [reportEmail, setReportEmail] = useState('')
+  const [reportSubject, setReportSubject] = useState('');
   const [reportStatus, setReportStatus] = useState('')
   const [submittingReport, setSubmittingReport] = useState(false)
 
@@ -196,36 +197,50 @@ function FoodDetail({
 
       <ReviewForm onAddReview={handleAddReview} />
 
-      <div className="detail-section detail-action-section">
-        <h3>Upload a photo or menu screenshot</h3>
+      <div className="review-form-container">
+        <h3>Upload Photos</h3>
         <form className="spot-action-form" onSubmit={handleMediaSubmit}>
-          <label>
-            Upload type
-            <select value={mediaType} onChange={(event) => setMediaType(event.target.value)}>
-              <option value="photo">Photo</option>
-              <option value="menu screenshot">Menu screenshot</option>
+          <div className="form-field-group">
+            <label className="form-label">Upload type</label>
+            <select className="form-select-input" value={mediaType} onChange={(event) => setMediaType(event.target.value)}>
+              <optgroup label="Primary Media">
+                <option value="photo">General Photo</option>
+                <option value="video">Video</option>
+              </optgroup>
+              <optgroup label="Documentation">
+                <option value="menu">Menu</option>
+                <option value="receipt">Receipt</option>
+                <option value="hours">Operating Hours</option>
+              </optgroup>
+              <optgroup label="Location Features">
+                <option value="exterior">Exterior/Entrance</option>
+                <option value="interior">Interior/Atmosphere</option>
+                <option value="amenity">Amenities</option>
+              </optgroup>
             </select>
-          </label>
+          </div>
 
-          <label>
-            Caption
+          <div className="form-field-group">
+            <label className="form-label">Caption</label>
             <input
+              className="form-text-input"
               type="text"
               value={mediaCaption}
               onChange={(event) => setMediaCaption(event.target.value)}
               placeholder="What should other students know about this image?"
             />
-          </label>
+          </div>
 
-          <label>
-            Choose files
+          <div className="form-field-group">
+            <label className="form-label">Choose files</label>
             <input
+              className="form-text-input"
               type="file"
               accept="image/*"
               multiple
               onChange={(event) => setSelectedFiles(Array.from(event.target.files || []))}
             />
-          </label>
+          </div>
 
           {selectedFiles.length > 0 && (
             <p className="detail-help-text">
@@ -241,51 +256,69 @@ function FoodDetail({
         </form>
       </div>
 
-      <div className="detail-section detail-action-section">
-        <h3>Report incorrect info</h3>
-        <form className="spot-action-form" onSubmit={handleReportSubmit}>
-          <label>
-            What needs fixing?
-            <select
-              value={reportIssueType}
-              onChange={(event) => setReportIssueType(event.target.value)}
-            >
-              <option value="hours">Hours are wrong</option>
-              <option value="address">Address is wrong</option>
-              <option value="closed">Restaurant is closed</option>
-              <option value="menu">Menu needs updating</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
+      <div className="review-form-container">
+  <h3>Report Incorrect Info</h3>
+  <form className="spot-action-form" onSubmit={handleReportSubmit}>
+    <div className="form-field-group">
+      <label className="form-label">What needs fixing?</label>
+      <select
+        className="form-select-input"
+        value={reportIssueType}
+        onChange={(event) => setReportIssueType(event.target.value)}
+      >
+        <option value="">-- Select an issue --</option>
+        <option value="hours">Hours are wrong</option>
+        <option value="address">Address is wrong</option>
+        <option value="closed">Restaurant is closed</option>
+        <option value="menu">Menu needs updating</option>
+        <option value="other">Other</option>
+      </select>
+    </div>
 
-          <label>
-            Details
-            <textarea
-              rows="3"
-              value={reportDetails}
-              onChange={(event) => setReportDetails(event.target.value)}
-              placeholder="Tell us what is incorrect and what it should say instead."
-              required
-            />
-          </label>
-
-          <label>
-            Email for follow-up (optional)
-            <input
-              type="email"
-              value={reportEmail}
-              onChange={(event) => setReportEmail(event.target.value)}
-              placeholder="student@hunter.cuny.edu"
-            />
-          </label>
-
-          {reportStatus && <p className="detail-status-message">{reportStatus}</p>}
-
-          <button type="submit" className="form-submit-btn" disabled={submittingReport}>
-            {submittingReport ? 'Sending report...' : 'Report info'}
-          </button>
-        </form>
+    {reportIssueType === 'other' && (
+      <div className="form-field-group">
+        <label className="form-label">Subject</label>
+        <input
+          className="form-text-input"
+          type="text"
+          value={reportSubject}
+          onChange={(event) => setReportSubject(event.target.value)}
+          placeholder="Briefly state the issue (e.g., Phone number)"
+          required
+        />
       </div>
+    )}
+
+    <div className="form-field-group">
+      <label className="form-label">Details</label>
+      <textarea
+        className="form-textarea-input"
+        rows="3"
+        value={reportDetails}
+        onChange={(event) => setReportDetails(event.target.value)}
+        placeholder="Tell us what is incorrect and what it should say instead."
+        required
+      />
+    </div>
+
+    <div className="form-field-group">
+      <label className="form-label">Email for follow-up (optional)</label>
+      <input
+        className="form-text-input"
+        type="email"
+        value={reportEmail}
+        onChange={(event) => setReportEmail(event.target.value)}
+        placeholder="student@hunter.cuny.edu"
+      />
+    </div>
+
+    {reportStatus && <p className="detail-status-message">{reportStatus}</p>}
+
+    <button type="submit" className="form-submit-btn" disabled={submittingReport}>
+      {submittingReport ? 'Sending report...' : 'Report info'}
+    </button>
+  </form>
+</div>
     </section>
   )
 }
