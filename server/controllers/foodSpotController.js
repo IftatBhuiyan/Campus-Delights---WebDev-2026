@@ -48,6 +48,7 @@ exports.getAllFoodSpots = async (req, res) => {
     if (priceRange) filter.priceRange = priceRange;
     if (cuisine) filter.cuisine = new RegExp(`^${cuisine}$`, 'i');
     if (minRating) filter.rating = { $gte: Number(minRating) };
+    filter.archived = { $ne: true };
 
     const spots = await FoodSpot.find(filter);
     res.json(sortSpots(spots, sortBy));
@@ -59,7 +60,7 @@ exports.getAllFoodSpots = async (req, res) => {
 exports.getFoodSpotById = async (req, res) => {
   try {
     const spot = await FoodSpot.findById(req.params.id);
-    if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+    if (!spot || spot.archived) return res.status(404).json({ message: 'Food spot not found' });
     res.json(spot);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -88,6 +89,7 @@ exports.addReview = async (req, res) => {
   try {
     const spot = await FoodSpot.findById(req.params.id);
     if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+    if (spot.archived) return res.status(404).json({ message: 'Food spot not found' });
 
     spot.reviews.push(req.body);
     const total = spot.reviews.reduce((sum, review) => sum + review.rating, 0);
@@ -104,6 +106,7 @@ exports.addSpotMedia = async (req, res) => {
   try {
     const spot = await FoodSpot.findById(req.params.id);
     if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+    if (spot.archived) return res.status(404).json({ message: 'Food spot not found' });
 
     const attachments = Array.isArray(req.body.attachments) ? req.body.attachments : [];
     if (attachments.length === 0) {
@@ -131,6 +134,7 @@ exports.reportFoodSpotInfo = async (req, res) => {
   try {
     const spot = await FoodSpot.findById(req.params.id);
     if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+    if (spot.archived) return res.status(404).json({ message: 'Food spot not found' });
 
     const issueType = String(req.body.issueType || '').trim();
     const details = String(req.body.details || '').trim();
@@ -148,6 +152,71 @@ exports.reportFoodSpotInfo = async (req, res) => {
 
     await spot.save();
     res.status(201).json(spot);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+const editableFields = [
+  'name',
+  'cuisine',
+  'priceRange',
+  'distance',
+  'location',
+  'hours',
+  'description',
+  'archived',
+];
+
+exports.getAdminFoodSpots = async (req, res) => {
+  try {
+    const { show = 'all' } = req.query;
+    const filter = {};
+
+    if (show === 'active') filter.archived = { $ne: true };
+    if (show === 'archived') filter.archived = true;
+
+    const spots = await FoodSpot.find(filter).sort({ name: 1 });
+    res.json(spots);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+exports.updateFoodSpot = async (req, res) => {
+  try {
+    const spot = await FoodSpot.findById(req.params.id);
+    if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+
+    editableFields.forEach((field) => {
+      if (req.body[field] !== undefined) {
+        spot[field] = req.body[field];
+      }
+    });
+
+    if (req.body.menu !== undefined) spot.menu = normalizeList(req.body.menu);
+    if (req.body.tags !== undefined) spot.tags = normalizeList(req.body.tags);
+    if (req.body.bestFor !== undefined) spot.bestFor = normalizeList(req.body.bestFor);
+
+    if (spot.priceRange && !['$', '$$', '$$$'].includes(spot.priceRange)) {
+      return res.status(400).json({ message: 'Price range must be $, $$, or $$$' });
+    }
+
+    await spot.save();
+    res.json(spot);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+};
+
+exports.setFoodSpotArchived = async (req, res) => {
+  try {
+    const spot = await FoodSpot.findById(req.params.id);
+    if (!spot) return res.status(404).json({ message: 'Food spot not found' });
+
+    spot.archived = Boolean(req.body.archived);
+    await spot.save();
+    res.json(spot);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
