@@ -7,7 +7,13 @@ import {
   logoutAdmin,
   rejectSuggestion,
 } from '../api/admin'
+import AdminLocations from '../components/AdminLocations'
 import './Admin.css'
+
+const MAIN_VIEWS = [
+  { id: 'submissions', label: 'Submissions' },
+  { id: 'locations', label: 'Locations' },
+]
 
 const STATUS_TABS = [
   { id: 'pending', label: 'Pending' },
@@ -47,6 +53,7 @@ function Admin() {
   const [rejectingId, setRejectingId] = useState(null)
   const [rejectionNote, setRejectionNote] = useState('')
   const [actionMessage, setActionMessage] = useState('')
+  const [mainView, setMainView] = useState('submissions')
 
   const loadSuggestions = useCallback(async (status) => {
     setLoadingSuggestions(true)
@@ -76,10 +83,10 @@ function Admin() {
   }, [])
 
   useEffect(() => {
-    if (session) {
+    if (session && mainView === 'submissions') {
       loadSuggestions(statusFilter)
     }
-  }, [session, statusFilter, loadSuggestions])
+  }, [session, statusFilter, loadSuggestions, mainView])
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -217,10 +224,10 @@ function Admin() {
       <div className="admin-top-bar">
         <div className="page-heading">
           <p className="hero-label">Admin</p>
-          <h1>Review submissions</h1>
+          <h1>Admin dashboard</h1>
           <p>
-            Signed in as <strong>{session.username}</strong>. Approve suggestions to publish
-            them on the Food Spots page.
+            Signed in as <strong>{session.username}</strong>. Review student submissions
+            or manage existing food spots.
           </p>
         </div>
         <button type="button" className="secondary-button" onClick={handleLogout}>
@@ -228,6 +235,30 @@ function Admin() {
         </button>
       </div>
 
+      <div className="admin-main-tabs">
+        {MAIN_VIEWS.map((view) => (
+          <button
+            key={view.id}
+            type="button"
+            className={`admin-main-tab ${mainView === view.id ? 'active' : ''}`}
+            onClick={() => {
+              setActionMessage('')
+              setMainView(view.id)
+            }}
+          >
+            {view.label}
+          </button>
+        ))}
+      </div>
+
+      {actionMessage && <p className="admin-action-message">{actionMessage}</p>}
+
+      {mainView === 'locations' && (
+        <AdminLocations onMessage={setActionMessage} />
+      )}
+
+      {mainView === 'submissions' && (
+        <>
       <div className="admin-tabs">
         {STATUS_TABS.map((tab) => (
           <button
@@ -241,7 +272,6 @@ function Admin() {
         ))}
       </div>
 
-      {actionMessage && <p className="admin-action-message">{actionMessage}</p>}
       {loadingSuggestions && <p className="status-message">Loading submissions...</p>}
       {listError && <p className="admin-error">{listError}</p>}
 
@@ -446,6 +476,8 @@ function Admin() {
           </article>
         ))}
       </div>
+        </>
+      )}
     </section>
   )
 }

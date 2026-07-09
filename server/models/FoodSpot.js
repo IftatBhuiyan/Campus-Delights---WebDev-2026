@@ -51,7 +51,8 @@ const foodSpotSchema = new mongoose.Schema(
     bestFor: { type: [String], default: [] },
     media: { type: [mediaSchema], default: [] },
     reports: { type: [reportSchema], default: [] },
-    reviews: { type: [reviewSchema], default: [] }
+    reviews: { type: [reviewSchema], default: [] },
+    archived: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
